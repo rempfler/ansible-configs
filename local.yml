@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  pre_tasks:
+    - name: update repositories
+      become: true
+      apt: update_cache=yes
+      changed_when: False
+
+  tasks:
+    - include: tasks/packages.yml
+    - include: tasks/emacs.yml
+    - include: tasks/gnome.yml

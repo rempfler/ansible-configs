@@ -1,0 +1,26 @@
+- name: Install emacs
+  apt: name=emacs
+  become: true
+
+- name: Install extras for emacs
+  become: true
+  apt:
+    name: ['texlive-full', 'auctex', 'clang', 'clang-format', 'libclang-dev']
+
+
+- name: Install python extras for emacs
+  become: true
+  pip:
+    name: ['jedi', 'flake8', 'yapf', 'autopep8']
+
+- name: Fetch custom emacs config
+  become: false
+  git:
+    repo: https://github.com/rempfler/emacs-config.git
+    dest: /tmp/emacs-config
+
+- name: Copy custom emacs config
+  become: false
+  copy:
+    src: /tmp/emacs-config/.emacs
+    dest: /home/{{ansible_user}}/

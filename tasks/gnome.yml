@@ -1,0 +1,8 @@
+- name: Install psutils
+  become: true
+  apt:
+    name: python3-psutil
+
+- name: Set sidebar icon size	
+  dconf: key="/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size" value="24"
+

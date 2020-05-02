@@ -1,0 +1,10 @@
+- name: Install ubuntu basic packages
+  become: true
+  apt:
+    name: ['htop', 'tmux', 'git', 'gitg', 'python3', 'python3-pip', 'rhythmbox', 'thunderbird', 'cmake']
+
+- name: Install skype
+  become: true
+  snap:
+    name: skype
+    classic: yes
